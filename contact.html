@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Visit the fictional ZedDrive Motors demo on Dushambe Road near NIPA, Lusaka, or send a WhatsApp enquiry.">
+  <meta name="theme-color" content="#0e5c40">
+  <title>Contact | ZedDrive Motors</title>
+  <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="contact">
+  <include src="header.html"></include>
+  <main id="main" class="section">
+    <div class="wrap">
+      <p class="eyebrow">Lusaka</p>
+      <h1>Contact</h1>
+      <p class="lede">Visit, call, or send a note. This demo form opens WhatsApp. It does not store what you type.</p>
+      <div class="split">
+        <section class="panel" aria-labelledby="visit-title">
+          <h2 id="visit-title">Visit</h2>
+          <p>Dushambe Rd, near NIPA, Lusaka</p>
+          <p>Mon–Sat 08:00–17:30<br>Sun 10:00–14:00</p>
+          <p class="fine">Placeholder number for this demo.</p>
+          <!-- PLACEHOLDER phone and WhatsApp number. Not a real line. -->
+          <div class="stack-actions">
+            <a class="btn btn-wa" href="https://wa.me/260970000000?text=Hello%20ZedDrive%20Motors%2C%20I%20would%20like%20to%20ask%20about%20a%20car.%20This%20is%20the%20demo%20site.">WhatsApp +260 9XX XXX XXX</a>
+            <a class="btn btn-ghost" href="tel:+260970000000">Call +260 9XX XXX XXX</a>
+          </div>
+        </section>
+        <section aria-labelledby="form-title">
+          <h2 id="form-title" class="vh">Enquiry</h2>
+          <form id="contact-form" class="form">
+            <label class="field">Name
+              <input name="name" type="text" autocomplete="name" required>
+            </label>
+            <label class="field">Phone
+              <input name="phone" type="tel" autocomplete="tel" required>
+            </label>
+            <label class="field">What you need
+              <select name="need" required>
+                <option value="Buy">Buy</option>
+                <option value="Rent">Rent</option>
+                <option value="Trade-in">Trade-in</option>
+              </select>
+            </label>
+            <label class="field">Message
+              <textarea name="message" required></textarea>
+            </label>
+            <button class="btn btn-ink" type="submit">Continue on WhatsApp</button>
+            <p class="fine">Demo only. Your words are put into a WhatsApp message. Nothing is sent to a server.</p>
+          </form>
+        </section>
+      </div>
+
+      <section class="section" id="map" aria-labelledby="map-title">
+        <h2 id="map-title">Map</h2>
+        <iframe
+          class="map"
+          title="Map of Dushambe Road near NIPA, Lusaka"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Dushambe%20Road%20near%20NIPA%2C%20Lusaka&amp;z=16&amp;output=embed"></iframe>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Dushambe%20Road%20near%20NIPA%20Lusaka">Open Dushambe Road near NIPA in Google Maps</a></p>
+      </section>
+
+      <section class="section" aria-labelledby="pay-title">
+        <h2 id="pay-title">How you can pay</h2>
+        <ul class="pay-list">
+          <li>Airtel Money</li>
+          <li>MTN MoMo</li>
+          <li>Bank transfer</li>
+        </ul>
+        <p class="fine">No account numbers are shown. This is a demo, and the rental “pay deposit” screen does not collect or move money.</p>
+      </section>
+    </div>
+  </main>
+  <include src="footer.html"></include>
+  <script type="module" src="/src/js/contact.js"></script>
+</body>
+</html>
