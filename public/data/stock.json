@@ -1,18 +1,18 @@
 {
   "demo": true,
-  "notice": "Sample demo data. ZedDrive Motors is fictional. Prices, availability, reviews and contacts are not real.",
+  "notice": "Sample demo data. ZedDrive Motors is fictional. Prices, availability, reviews, contacts and the address are not real.",
   "currency": "ZMW",
   "dealer": {
     "name": "ZedDrive Motors",
     "tagline": "Buy or rent your next car, one WhatsApp away.",
-    "address": "Dushambe Rd, near NIPA, Lusaka",
+    "address": "Plot 0000, Sample Road, Lusaka, Zambia (demo address)",
     "hours": [
       "Mon\u2013Sat 08:00\u201317:30",
       "Sun 10:00\u201314:00"
     ],
     "phoneDisplay": "+260 9XX XXX XXX",
     "pacraNumber": "0000000000",
-    "mapQuery": "Dushambe Road near NIPA, Lusaka"
+    "mapQuery": null
   },
   "cars": [
     {
