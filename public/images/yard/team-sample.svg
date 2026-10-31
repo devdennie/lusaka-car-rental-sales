@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="teamTitle teamDesc">
+  <title id="teamTitle">Sample illustration</title>
+  <desc id="teamDesc">Two simplified figures standing beside a car. Not a photograph of ZedDrive staff.</desc>
+  <rect width="800" height="520" fill="#e7f0ea"/>
+  <rect x="0" y="360" width="800" height="160" fill="#d5e4da"/>
+  <rect x="390" y="250" width="280" height="100" rx="18" fill="#0e5c40"/>
+  <path d="M450 250c8-48 40-78 90-78s82 30 96 78" fill="#147556"/>
+  <circle cx="455" cy="352" r="26" fill="#17211c"/>
+  <circle cx="610" cy="352" r="26" fill="#17211c"/>
+  <circle cx="180" cy="230" r="36" fill="#f2d3bd"/>
+  <rect x="148" y="270" width="64" height="110" rx="22" fill="#0e5c40"/>
+  <circle cx="300" cy="240" r="36" fill="#e4b898"/>
+  <rect x="268" y="280" width="64" height="100" rx="22" fill="#17211c"/>
+</svg>

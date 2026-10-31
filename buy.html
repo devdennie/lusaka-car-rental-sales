@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sample cars for sale in Lusaka, with prices in ZMW. Filter by make, price, year, body, gearbox and fuel.">
+  <meta name="theme-color" content="#0e5c40">
+  <title>Cars for sale in Lusaka | ZedDrive Motors</title>
+  <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="buy">
+  <include src="header.html"></include>
+  <main id="main" class="section">
+    <div class="wrap">
+      <p class="eyebrow">Sample stock</p>
+      <h1>Cars for sale</h1>
+      <p class="lede">Every car is inspected before it goes on the lot. Filter by make, price, year, body type, gearbox or fuel, then tap “Ask about this car on WhatsApp”.</p>
+      <form id="filters" class="filters" aria-label="Filter cars for sale">
+        <label class="field">Make
+          <select id="filter-make" name="make"><option value="">Any make</option></select>
+        </label>
+        <label class="field">Price
+          <select id="filter-price" name="price">
+            <option value="">Any price</option>
+            <option value="0-100">Under K100,000</option>
+            <option value="100-200">K100,000 – K200,000</option>
+            <option value="200-400">K200,000 – K400,000</option>
+            <option value="400-800">K400,000 – K800,000</option>
+            <option value="800">K800,000 and above</option>
+          </select>
+        </label>
+        <label class="field">Year
+          <select id="filter-year" name="year">
+            <option value="">Any year</option>
+            <option value="2020">2020 and newer</option>
+            <option value="2016">2016 – 2019</option>
+            <option value="2015">2015 and older</option>
+          </select>
+        </label>
+        <label class="field">Body
+          <select id="filter-body" name="body"><option value="">Any body</option></select>
+        </label>
+        <label class="field">Gearbox
+          <select id="filter-gear" name="gear"><option value="">Any gearbox</option></select>
+        </label>
+        <label class="field">Fuel
+          <select id="filter-fuel" name="fuel"><option value="">Any fuel</option></select>
+        </label>
+        <div class="filter-actions">
+          <button class="btn btn-ghost" type="reset">Clear filters</button>
+          <p id="result-count" aria-live="polite"></p>
+        </div>
+      </form>
+      <div id="car-list" class="cards">
+        <p>Loading sample cars…</p>
+      </div>
+      <section class="section" aria-labelledby="trade-title">
+        <h2 id="trade-title">Trade-ins and finance</h2>
+        <p>We help with trade-ins, and we can point you to financing partners.</p>
+        <p><a class="btn btn-ink" href="%BASE_URL%contact.html?need=Trade-in">Ask about a trade-in</a></p>
+      </section>
+    </div>
+  </main>
+  <include src="footer.html"></include>
+  <script type="module" src="/src/js/buy.js"></script>
+</body>
+</html>

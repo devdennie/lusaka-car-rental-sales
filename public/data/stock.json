@@ -1,0 +1,573 @@
+{
+  "demo": true,
+  "notice": "Sample demo data. ZedDrive Motors is fictional. Prices, availability, reviews and contacts are not real.",
+  "currency": "ZMW",
+  "dealer": {
+    "name": "ZedDrive Motors",
+    "tagline": "Buy or rent your next car, one WhatsApp away.",
+    "address": "Dushambe Rd, near NIPA, Lusaka",
+    "hours": [
+      "Mon\u2013Sat 08:00\u201317:30",
+      "Sun 10:00\u201314:00"
+    ],
+    "phoneDisplay": "+260 9XX XXX XXX",
+    "pacraNumber": "0000000000",
+    "mapQuery": "Dushambe Road near NIPA, Lusaka"
+  },
+  "cars": [
+    {
+      "id": "toyota-vitz-2017",
+      "make": "Toyota",
+      "model": "Vitz",
+      "year": 2017,
+      "mileageKm": 92400,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Hatchback",
+      "seats": 5,
+      "colour": "White",
+      "engine": "1.3L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/toyota-vitz.webp"
+      ],
+      "forSale": true,
+      "forRent": true,
+      "homeSale": true,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Starts cleanly, with small stone chips on the bonnet.",
+      "inspectionNotes": {
+        "tyres": "Front tyres are part-worn. Sample note."
+      },
+      "sale": {
+        "priceZmw": 96000,
+        "status": "available"
+      },
+      "rent": {
+        "dailyInLusakaZmw": 600,
+        "dailyOutOfTownZmw": 780,
+        "weeklyInLusakaZmw": 3600,
+        "weeklyOutOfTownZmw": 4700,
+        "monthlyInLusakaZmw": 11500,
+        "monthlyOutOfTownZmw": 15000,
+        "depositZmw": 2000,
+        "withDriver": false,
+        "unavailableDates": [
+          "2026-11-04",
+          "2026-11-05",
+          "2026-11-06"
+        ]
+      }
+    },
+    {
+      "id": "honda-fit-2018",
+      "make": "Honda",
+      "model": "Fit",
+      "year": 2018,
+      "mileageKm": 74800,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Hatchback",
+      "seats": 5,
+      "colour": "Silver",
+      "engine": "1.5L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/honda-fit.webp"
+      ],
+      "forSale": true,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": true,
+      "inspected": true,
+      "conditionNotes": "Sample note. Straight body and cold air conditioning in this demo description.",
+      "inspectionNotes": {},
+      "sale": {
+        "priceZmw": 104000,
+        "status": "available"
+      },
+      "rent": {
+        "dailyInLusakaZmw": 650,
+        "dailyOutOfTownZmw": 850,
+        "weeklyInLusakaZmw": 3900,
+        "weeklyOutOfTownZmw": 5100,
+        "monthlyInLusakaZmw": 12500,
+        "monthlyOutOfTownZmw": 16000,
+        "depositZmw": 2000,
+        "withDriver": false,
+        "unavailableDates": [
+          "2026-11-12",
+          "2026-11-13"
+        ]
+      }
+    },
+    {
+      "id": "mazda-demio-2016",
+      "make": "Mazda",
+      "model": "Demio",
+      "year": 2016,
+      "mileageKm": 110200,
+      "gearbox": "Manual",
+      "fuel": "Petrol",
+      "bodyType": "Hatchback",
+      "seats": 5,
+      "colour": "Silver",
+      "engine": "1.3L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/mazda-demio.webp"
+      ],
+      "forSale": true,
+      "forRent": false,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Manual hatchback with a mark on the rear bumper. Reserved on this demo.",
+      "inspectionNotes": {
+        "body": "Light mark on the rear bumper. Sample note."
+      },
+      "sale": {
+        "priceZmw": 89000,
+        "status": "reserved"
+      },
+      "rent": null
+    },
+    {
+      "id": "nissan-note-2017",
+      "make": "Nissan",
+      "model": "Note",
+      "year": 2017,
+      "mileageKm": 88600,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Hatchback",
+      "seats": 5,
+      "colour": "Silver",
+      "engine": "1.2L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/nissan-note.webp"
+      ],
+      "forSale": false,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. City hatchback listed for rent only in this demo.",
+      "inspectionNotes": {},
+      "sale": null,
+      "rent": {
+        "dailyInLusakaZmw": 580,
+        "dailyOutOfTownZmw": 750,
+        "weeklyInLusakaZmw": 3500,
+        "weeklyOutOfTownZmw": 4500,
+        "monthlyInLusakaZmw": 11000,
+        "monthlyOutOfTownZmw": 14500,
+        "depositZmw": 2000,
+        "withDriver": true,
+        "unavailableDates": []
+      }
+    },
+    {
+      "id": "toyota-allion-2016",
+      "make": "Toyota",
+      "model": "Allion",
+      "year": 2016,
+      "mileageKm": 101500,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Sedan",
+      "seats": 5,
+      "colour": "Red",
+      "engine": "1.8L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/toyota-allion.webp"
+      ],
+      "forSale": true,
+      "forRent": true,
+      "homeSale": true,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Even tyre wear and a straight body in this demo description.",
+      "inspectionNotes": {
+        "lights": "One fog lamp is cloudy. Sample note."
+      },
+      "sale": {
+        "priceZmw": 128000,
+        "status": "available"
+      },
+      "rent": {
+        "dailyInLusakaZmw": 650,
+        "dailyOutOfTownZmw": 860,
+        "weeklyInLusakaZmw": 3900,
+        "weeklyOutOfTownZmw": 5200,
+        "monthlyInLusakaZmw": 12500,
+        "monthlyOutOfTownZmw": 16500,
+        "depositZmw": 2000,
+        "withDriver": false,
+        "unavailableDates": [
+          "2026-11-18",
+          "2026-11-19"
+        ]
+      }
+    },
+    {
+      "id": "toyota-premio-2015",
+      "make": "Toyota",
+      "model": "Premio",
+      "year": 2015,
+      "mileageKm": 128400,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Sedan",
+      "seats": 5,
+      "colour": "White",
+      "engine": "1.8L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/toyota-premio.webp"
+      ],
+      "forSale": true,
+      "forRent": false,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Marked sold on this demo. Interior described as tidy.",
+      "inspectionNotes": {
+        "interior": "Driver seat bolster is worn. Sample note."
+      },
+      "sale": {
+        "priceZmw": 118000,
+        "status": "sold"
+      },
+      "rent": null
+    },
+    {
+      "id": "toyota-axio-2019",
+      "make": "Toyota",
+      "model": "Axio",
+      "year": 2019,
+      "mileageKm": 61200,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Sedan",
+      "seats": 5,
+      "colour": "Silver",
+      "engine": "1.5L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/toyota-axio.webp"
+      ],
+      "forSale": true,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Lower mileage in this demo, with no warning lights on the checklist.",
+      "inspectionNotes": {},
+      "sale": {
+        "priceZmw": 248000,
+        "status": "available"
+      },
+      "rent": {
+        "dailyInLusakaZmw": 700,
+        "dailyOutOfTownZmw": 920,
+        "weeklyInLusakaZmw": 4200,
+        "weeklyOutOfTownZmw": 5500,
+        "monthlyInLusakaZmw": 13500,
+        "monthlyOutOfTownZmw": 17500,
+        "depositZmw": 2000,
+        "withDriver": false,
+        "unavailableDates": [
+          "2026-11-25",
+          "2026-11-26",
+          "2026-11-27"
+        ]
+      }
+    },
+    {
+      "id": "toyota-mark-x-2014",
+      "make": "Toyota",
+      "model": "Mark X",
+      "year": 2014,
+      "mileageKm": 141000,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Sedan",
+      "seats": 5,
+      "colour": "White",
+      "engine": "2.5L",
+      "drive": "Rear-wheel drive",
+      "images": [
+        "images/cars/toyota-mark-x.webp"
+      ],
+      "forSale": false,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Rental-only sedan in this demo.",
+      "inspectionNotes": {
+        "tyres": "Rear tyres are newer than the fronts. Sample note."
+      },
+      "sale": null,
+      "rent": {
+        "dailyInLusakaZmw": 950,
+        "dailyOutOfTownZmw": 1250,
+        "weeklyInLusakaZmw": 5700,
+        "weeklyOutOfTownZmw": 7500,
+        "monthlyInLusakaZmw": 18000,
+        "monthlyOutOfTownZmw": 24000,
+        "depositZmw": 2000,
+        "withDriver": false,
+        "unavailableDates": [
+          "2026-12-02",
+          "2026-12-03"
+        ]
+      }
+    },
+    {
+      "id": "toyota-vanguard-2012",
+      "make": "Toyota",
+      "model": "Vanguard",
+      "year": 2012,
+      "mileageKm": 168500,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "SUV",
+      "seats": 5,
+      "colour": "Silver",
+      "engine": "2.4L",
+      "drive": "All-wheel drive",
+      "images": [
+        "images/cars/toyota-vanguard.webp"
+      ],
+      "forSale": true,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Older SUV with a firm ride. The rental deposit uses the SUV sample amount.",
+      "inspectionNotes": {
+        "body": "Light scratches along the lower doors. Sample note."
+      },
+      "sale": {
+        "priceZmw": 268000,
+        "status": "available"
+      },
+      "rent": {
+        "dailyInLusakaZmw": 1400,
+        "dailyOutOfTownZmw": 1800,
+        "weeklyInLusakaZmw": 8400,
+        "weeklyOutOfTownZmw": 10800,
+        "monthlyInLusakaZmw": 27000,
+        "monthlyOutOfTownZmw": 34000,
+        "depositZmw": 5000,
+        "withDriver": true,
+        "unavailableDates": [
+          "2026-11-08"
+        ]
+      }
+    },
+    {
+      "id": "toyota-harrier-2018",
+      "make": "Toyota",
+      "model": "Harrier",
+      "year": 2018,
+      "mileageKm": 83400,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "SUV",
+      "seats": 5,
+      "colour": "White",
+      "engine": "2.0L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/toyota-harrier.webp"
+      ],
+      "forSale": true,
+      "forRent": false,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. White paint in the sample photo. For sale only in this demo.",
+      "inspectionNotes": {
+        "tyres": "Spare is a space-saver. Sample note."
+      },
+      "sale": {
+        "priceZmw": 438000,
+        "status": "available"
+      },
+      "rent": null
+    },
+    {
+      "id": "toyota-fortuner-2023",
+      "make": "Toyota",
+      "model": "Fortuner",
+      "year": 2023,
+      "mileageKm": 28600,
+      "gearbox": "Automatic",
+      "fuel": "Diesel",
+      "bodyType": "SUV",
+      "seats": 7,
+      "colour": "Grey",
+      "engine": "2.8L",
+      "drive": "Four-wheel drive",
+      "images": [
+        "images/cars/toyota-fortuner.webp"
+      ],
+      "forSale": true,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": true,
+      "inspected": true,
+      "conditionNotes": "Sample note. Low mileage in this demo, diesel, seven seats.",
+      "inspectionNotes": {},
+      "sale": {
+        "priceZmw": 1260000,
+        "status": "available"
+      },
+      "rent": {
+        "dailyInLusakaZmw": 2400,
+        "dailyOutOfTownZmw": 3100,
+        "weeklyInLusakaZmw": 14400,
+        "weeklyOutOfTownZmw": 18600,
+        "monthlyInLusakaZmw": 46000,
+        "monthlyOutOfTownZmw": 59000,
+        "depositZmw": 5000,
+        "withDriver": true,
+        "unavailableDates": [
+          "2026-12-08",
+          "2026-12-09",
+          "2026-12-10"
+        ]
+      }
+    },
+    {
+      "id": "toyota-hilux-2019",
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2019,
+      "mileageKm": 104800,
+      "gearbox": "Manual",
+      "fuel": "Diesel",
+      "bodyType": "Pickup",
+      "seats": 5,
+      "colour": "Grey",
+      "engine": "2.4L",
+      "drive": "Four-wheel drive",
+      "images": [
+        "images/cars/toyota-hilux.webp"
+      ],
+      "forSale": true,
+      "forRent": true,
+      "homeSale": true,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Double cab. A canopy is not included in this sample.",
+      "inspectionNotes": {
+        "suspension": "Rear bushes are starting to age. Sample note."
+      },
+      "sale": {
+        "priceZmw": 695000,
+        "status": "available"
+      },
+      "rent": {
+        "dailyInLusakaZmw": 2300,
+        "dailyOutOfTownZmw": 3000,
+        "weeklyInLusakaZmw": 13800,
+        "weeklyOutOfTownZmw": 18000,
+        "monthlyInLusakaZmw": 44000,
+        "monthlyOutOfTownZmw": 57000,
+        "depositZmw": 5000,
+        "withDriver": true,
+        "unavailableDates": [
+          "2026-11-21",
+          "2026-11-22"
+        ]
+      }
+    },
+    {
+      "id": "ford-ranger-2018",
+      "make": "Ford",
+      "model": "Ranger",
+      "year": 2018,
+      "mileageKm": 119400,
+      "gearbox": "Automatic",
+      "fuel": "Diesel",
+      "bodyType": "Pickup",
+      "seats": 5,
+      "colour": "Orange",
+      "engine": "2.2L",
+      "drive": "Four-wheel drive",
+      "images": [
+        "images/cars/ford-ranger.webp"
+      ],
+      "forSale": false,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": false,
+      "inspected": true,
+      "conditionNotes": "Sample note. Rental pickup. The photo is a sample of the model, not a ZedDrive vehicle.",
+      "inspectionNotes": {},
+      "sale": null,
+      "rent": {
+        "dailyInLusakaZmw": 2200,
+        "dailyOutOfTownZmw": 2900,
+        "weeklyInLusakaZmw": 13200,
+        "weeklyOutOfTownZmw": 17400,
+        "monthlyInLusakaZmw": 42000,
+        "monthlyOutOfTownZmw": 55000,
+        "depositZmw": 5000,
+        "withDriver": true,
+        "unavailableDates": [
+          "2026-11-15"
+        ]
+      }
+    },
+    {
+      "id": "toyota-alphard-2016",
+      "make": "Toyota",
+      "model": "Alphard",
+      "year": 2016,
+      "mileageKm": 97600,
+      "gearbox": "Automatic",
+      "fuel": "Petrol",
+      "bodyType": "Van",
+      "seats": 7,
+      "colour": "Black",
+      "engine": "2.5L",
+      "drive": "Front-wheel drive",
+      "images": [
+        "images/cars/toyota-alphard.webp"
+      ],
+      "forSale": false,
+      "forRent": true,
+      "homeSale": false,
+      "homeRent": true,
+      "inspected": true,
+      "conditionNotes": "Sample note. Seven-seat van. A driver can be requested on WhatsApp.",
+      "inspectionNotes": {
+        "interior": "Middle-row tray table has a scratch. Sample note."
+      },
+      "sale": null,
+      "rent": {
+        "dailyInLusakaZmw": 1600,
+        "dailyOutOfTownZmw": 2100,
+        "weeklyInLusakaZmw": 9600,
+        "weeklyOutOfTownZmw": 12600,
+        "monthlyInLusakaZmw": 30000,
+        "monthlyOutOfTownZmw": 40000,
+        "depositZmw": 5000,
+        "withDriver": true,
+        "unavailableDates": [
+          "2026-11-28",
+          "2026-11-29",
+          "2026-11-30"
+        ]
+      }
+    }
+  ]
+}
