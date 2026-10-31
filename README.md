@@ -2,7 +2,7 @@
 
 A mobile-first demo website for a fictional Lusaka car dealer that sells and rents cars. It is a portfolio piece to show local dealers what a fast, WhatsApp-first site can look like.
 
-**ZedDrive Motors is fictional.** Every car, price, review, opening hour and contact on the site is sample demo data. Nothing here is a real listing or a real phone number.
+**ZedDrive Motors is fictional.** Every car, price, review, opening hour, contact and address on the site is sample demo data. Nothing here is a real listing, a real phone number, or a real street address. The address shown is Plot 0000, Sample Road, Lusaka, Zambia (demo address).
 
 The tagline is “Buy or rent your next car, one WhatsApp away.”
 
@@ -39,7 +39,7 @@ The deposit step is a demo screen. It does not take payment:
 - **Car** — gallery, specs, condition notes, a sample inspection checklist, and call / WhatsApp buttons. The WhatsApp text includes the car name and the sample price. Cars that are also for rent get a date picker on the same page.
 - **Rent** — the same stock, limited to cars marked for rent. Each car has daily, weekly and monthly rates, split into in Lusaka and out of town. Pick dates to see the total, the refundable deposit, and a sample availability calendar. Self-drive or driver, and Kenneth Kaunda International pick-up, are included in the WhatsApp message. “Pay deposit to reserve” opens a fake MTN MoMo / Airtel Money prompt and then WhatsApp. No payment is taken and nothing is stored.
 - **About** — who the fictional dealer is, a sample PACRA number (`0000000000`), placeholder yard and team images, and photo credits.
-- **Contact** — Dushambe Rd near NIPA, opening hours, a Google Map, call and WhatsApp, and a short form (Buy / Rent / Trade-in) that opens WhatsApp.
+- **Contact** — Plot 0000, Sample Road, Lusaka, Zambia (demo address), opening hours, a map placeholder (no live pin), call and WhatsApp, and a short form (Buy / Rent / Trade-in) that opens WhatsApp.
 
 A floating WhatsApp button sits on every page. Visible phone text is `+260 9XX XXX XXX`. The `tel:` and `wa.me` links use the placeholder number `260970000000`, marked in the HTML and in `src/js/config.js`.
 

@@ -427,6 +427,20 @@ input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: #
   border-radius: 16px;
   background: #e6e1d6;
 }
+.map-placeholder {
+  display: grid;
+  place-items: center;
+  border: 1px dashed #cfc6b8;
+  color: var(--muted);
+  text-align: center;
+  padding: 1.5rem;
+}
+.map-placeholder p {
+  margin: 0;
+  max-width: 16rem;
+  font-weight: 750;
+  font-size: 1.05rem;
+}
 
 .site-footer { background: #14211c; color: #f4f1ea; padding: 2rem 0 1.2rem; margin-top: 1rem; }
 .site-footer a { color: #d7f0e3; }
