@@ -72,7 +72,48 @@ function render(car) {
   if (car.forRent) {
     mountQuote(quoteHost, { cars: [car], initialId: car.id, lockCar: true });
   }
+  layout.append(mobileBar(car));
   return layout;
+}
+
+function modeBadges(car) {
+  if (car.forSale && car.forRent) {
+    return [
+      el('span', { class: 'badge badge-best' }, 'For sale'),
+      el('span', { class: 'badge badge-rent' }, 'Also available to rent'),
+    ];
+  }
+  if (car.forSale) return [el('span', { class: 'badge badge-best' }, 'For sale')];
+  if (car.forRent) return [el('span', { class: 'badge badge-rent' }, 'For rent')];
+  return [];
+}
+
+function rentPriceLine(car) {
+  if (!car.forRent || !car.rent) return null;
+  const inTown = formatZmw(car.rent.dailyInLusakaZmw);
+  const outOfTown = formatZmw(car.rent.dailyOutOfTownZmw);
+  const lead = car.forSale ? 'Also available to rent from' : 'From';
+  return el('p', {}, [
+    `${lead} ${inTown} a day in Lusaka, or ${outOfTown} out of town. `,
+    el('span', { class: 'tag' }, 'Sample'),
+  ]);
+}
+
+function mobileBar(car) {
+  const forSale = car.forSale && car.sale;
+  const price = forSale
+    ? formatZmw(car.sale.priceZmw)
+    : car.forRent && car.rent
+      ? `From ${formatZmw(car.rent.dailyInLusakaZmw)}/day`
+      : '';
+  const message = forSale ? saleMessage(car) : listedRentMessage(car);
+  return el('div', { class: 'detail-bar' }, [
+    el('p', { class: 'detail-bar-price' }, [
+      el('span', {}, price),
+      el('span', { class: 'tag' }, 'Sample'),
+    ]),
+    el('a', { class: 'btn btn-wa', href: waLink(message) }, 'WhatsApp'),
+  ]);
 }
 
 function side(car) {
@@ -93,17 +134,14 @@ function side(car) {
     el('h1', {}, carName(car)),
     el('div', { class: 'badge-row' }, [
       car.forSale ? el('span', { class: `badge badge-${car.sale.status}` }, label(car.sale.status)) : null,
+      ...modeBadges(car),
       car.inspected ? el('span', { class: 'badge badge-inspected' }, 'Inspected') : null,
-      car.forRent ? el('span', { class: 'badge badge-rent' }, 'For rent') : null,
     ]),
     car.forSale ? el('p', { class: 'price price-lg' }, [
       el('span', {}, formatZmw(car.sale.priceZmw)),
       el('span', { class: 'tag' }, 'Sample'),
     ]) : null,
-    car.forRent ? el('p', {}, [
-      `Rent from ${formatZmw(car.rent.dailyInLusakaZmw)} a day in Lusaka, or ${formatZmw(car.rent.dailyOutOfTownZmw)} out of town. `,
-      el('span', { class: 'tag' }, 'Sample'),
-    ]) : null,
+    rentPriceLine(car),
     el('div', { class: 'card-actions' }, actions),
     car.forSale ? el('p', {}, [
       'We help with trade-ins, and we can point you to financing partners. ',
