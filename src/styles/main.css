@@ -344,17 +344,48 @@ input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: #
   min-inline-size: 0;
 }
 .choices legend { font-weight: 750; padding: 0; margin-bottom: 0.4rem; }
+.segment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #6d675c;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #101014;
+}
 .choice {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   min-height: 44px;
-  margin: 0 0.4rem 0.4rem 0;
-  padding: 0.3rem 0.75rem;
-  border: 1.5px solid var(--line);
-  border-radius: 999px;
-  background: var(--white);
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  background: transparent;
   font-weight: 650;
+  white-space: nowrap;
+  font-size: 0.92rem;
+}
+.segment .choice + .choice { border-left: 1px solid #6d675c; }
+.segment .choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.segment .choice:has(:checked) {
+  background: var(--gold);
+  color: #1a1408;
+}
+.segment .choice:focus-within {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+  position: relative;
+  z-index: 1;
 }
 .checkline {
   display: flex;
@@ -556,6 +587,7 @@ dialog.deposit::backdrop { background: rgba(23, 33, 28, 0.48); }
   .card-actions .btn,
   .quote-actions .btn,
   .hero-search .btn,
+  .fleet-search .btn,
   .section-head a {
     margin-right: 3.5rem;
   }
@@ -593,9 +625,18 @@ dialog.deposit::backdrop { background: rgba(23, 33, 28, 0.48); }
 }
 
 @media (min-width: 980px) {
-  .detail { grid-template-columns: 1.15fr 0.85fr; align-items: start; }
-  .detail-more { grid-column: 1 / -1; }
-  .detail-side { position: sticky; top: calc(var(--header) + 0.6rem); }
+  .detail { grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr); align-items: start; }
+  .gallery { grid-column: 1; grid-row: 1; }
+  .detail-more { grid-column: 1; grid-row: 2; }
+  .detail-side {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position: sticky;
+    top: calc(var(--header) + 0.75rem);
+    align-self: start;
+    max-height: calc(100vh - var(--header) - 1.5rem);
+    overflow: auto;
+  }
   .points { grid-template-columns: 1fr 1fr 1fr; }
   .footer-grid { grid-template-columns: 1.3fr 0.8fr 1.1fr 0.9fr; }
   .steps { grid-template-columns: repeat(5, 1fr); }
@@ -754,10 +795,65 @@ dialog.deposit::backdrop { background: rgba(23, 33, 28, 0.48); }
 }
 .step-icon { color: var(--gold); display: block; margin-bottom: 0.35rem; }
 
+.detail-bar { display: none; }
+.fleet-search {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0 0 1rem;
+  padding: 0.85rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.search-summary {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1rem;
+  background: #1a160e;
+  border: 1px solid #6a5420;
+  border-radius: 14px;
+}
+.search-summary p { margin: 0; }
+.fleet-group { margin: 0 0 1.5rem; }
+.fleet-group h2 { font-size: 1.35rem; }
+.card-unavailable { outline: 1px solid #6a3b34; }
+
+@media (max-width: 979px) {
+  body[data-page="car"] { padding-bottom: 8rem; }
+  body[data-page="car"] .wa-float { display: none; }
+  .detail-bar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 25;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.8rem calc(0.65rem + env(safe-area-inset-bottom));
+    background: #1c1c22;
+    border-top: 1px solid var(--line);
+  }
+  .detail-bar-price {
+    margin: 0;
+    font-weight: 750;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .detail-bar .btn { min-height: 44px; margin: 0; padding-inline: 0.75rem; }
+}
+@media (min-width: 800px) {
+  .fleet-search { grid-template-columns: 1.1fr 1fr 1fr auto; align-items: end; }
+  .fleet-search .btn { width: auto; }
+}
+
 .cta-banner {
   background: var(--gold);
   color: #1a1408;
+  padding: 2.75rem 0;
 }
+.cta-banner h2 { margin-top: 0; }
 .cta-banner h2, .cta-banner p { color: #1a1408; }
 .cta-banner .btn {
   background: #1a1408;
