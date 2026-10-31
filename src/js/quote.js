@@ -190,12 +190,12 @@ function field(label, control) {
 }
 
 function radios(legend, name, options, checked) {
-  return el('fieldset', { class: 'choices' }, [
+  return el('fieldset', { class: 'choices segmented' }, [
     el('legend', {}, legend),
-    ...options.map(([value, label]) => el('label', { class: 'choice' }, [
+    el('div', { class: 'segment' }, options.map(([value, label]) => el('label', { class: 'choice' }, [
       el('input', { type: 'radio', name, value, checked: value === checked }),
-      label,
-    ])),
+      el('span', {}, label),
+    ]))),
   ]);
 }
 
