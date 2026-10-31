@@ -2,7 +2,7 @@ import { page, PHONE_DISPLAY } from './config.js';
 import { el } from './dom.js';
 import { carName, formatKm, formatZmw } from './format.js';
 import { photo } from './stock.js';
-import { listedRentMessage, saleMessage, telHref, waLink } from './whatsapp.js';
+import { listedRentMessage, rentQuoteMessage, saleMessage, telHref, waLink } from './whatsapp.js';
 
 const CHAT = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 16.5 4 20l3.6-1A8 8 0 1 0 5 16.5Z" stroke-linejoin="round"/></svg>';
 
@@ -72,6 +72,7 @@ export function saleCard(car) {
         el('span', {}, formatZmw(car.sale.priceZmw)),
         el('span', { class: 'tag' }, 'Sample'),
       ]),
+      car.forRent && car.rent ? el('p', { class: 'meta' }, 'Also available to rent') : null,
       el('div', { class: 'card-actions' }, [
         el('a', { class: 'btn btn-wa', href: waLink(saleMessage(car)) }, [icon(CHAT), 'Ask about this car on WhatsApp']),
         el('a', { class: 'text-link', href }, 'View this car'),
@@ -80,29 +81,45 @@ export function saleCard(car) {
   ]);
 }
 
-export function rentCard(car, { onSelect } = {}) {
+export function rentCard(car, { onSelect, stay } = {}) {
   const href = page(`car.html?id=${encodeURIComponent(car.id)}#rent`);
   const rates = car.rent;
   const booked = rates.unavailableDates?.length || 0;
   const selectControl = onSelect
     ? el('button', { type: 'button', class: 'btn btn-gold', onclick: () => onSelect(car.id) }, 'Rent now')
     : el('a', { class: 'btn btn-gold', href: page(`rent.html?car=${encodeURIComponent(car.id)}#quote`) }, 'Rent now');
-  return el('article', { class: 'card' }, [
+  const message = stay
+    ? rentQuoteMessage({
+      car,
+      quote: stay.quote,
+      start: stay.start,
+      end: stay.end,
+      drive: 'Self-drive',
+      airport: false,
+    })
+    : listedRentMessage(car);
+  const priceText = stay ? formatZmw(stay.quote.total) : `From ${formatZmw(rates.dailyInLusakaZmw)}/day`;
+  const priceNote = stay
+    ? (stay.quote.available ? stay.label : 'Not free for these dates')
+    : null;
+  return el('article', { class: `card${stay && !stay.quote.available ? ' card-unavailable' : ''}` }, [
     photoLink(car, href),
     el('div', { class: 'card-body' }, [
       badgeRow(car),
+      car.forSale ? el('span', { class: 'badge badge-best' }, 'Also for sale') : null,
       el('h3', {}, [el('a', { href }, carName(car))]),
       specRow(car),
       el('p', { class: 'price' }, [
-        el('span', {}, `From ${formatZmw(rates.dailyInLusakaZmw)}/day`),
+        el('span', {}, priceText),
         el('span', { class: 'tag' }, 'Sample'),
       ]),
+      priceNote ? el('p', { class: 'meta' }, priceNote) : null,
       rateDetails(car),
       el('p', { class: 'meta' }, booked ? `${booked} sample days booked` : 'No sample days booked'),
       rates.withDriver ? el('p', { class: 'meta' }, 'Driver available') : null,
       el('div', { class: 'card-actions' }, [
         selectControl,
-        el('a', { class: 'btn btn-wa', href: waLink(listedRentMessage(car)) }, [icon(CHAT), 'Ask on WhatsApp']),
+        el('a', { class: 'btn btn-wa', href: waLink(message) }, [icon(CHAT), 'Ask on WhatsApp']),
         el('a', { class: 'text-link', href }, 'View this car'),
       ]),
     ]),

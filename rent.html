@@ -16,7 +16,23 @@
       <h1>Rent a car</h1>
       <p class="lede">Need a car for a day, a week or a month? Pick a car, choose your dates and WhatsApp us to confirm.</p>
       <p>Self-drive or with a driver. Airport pick-up at Kenneth Kaunda International can be added to the message.</p>
-      <div id="fleet" class="cards">
+      <form id="fleet-search" class="fleet-search">
+        <label class="field">Location
+          <select name="area" id="fleet-area">
+            <option value="in">In Lusaka</option>
+            <option value="out">Out of town</option>
+          </select>
+        </label>
+        <label class="field">Pick-up date
+          <input type="date" name="start" id="fleet-start">
+        </label>
+        <label class="field">Return date
+          <input type="date" name="end" id="fleet-end">
+        </label>
+        <button class="btn btn-gold" type="submit">Update dates</button>
+      </form>
+      <div id="search-summary" class="search-summary" hidden></div>
+      <div id="fleet">
         <p>Loading sample cars…</p>
       </div>
 
