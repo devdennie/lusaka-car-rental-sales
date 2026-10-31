@@ -1,9 +1,13 @@
-/** Days the car is out. The return date is the day it comes back, so it is not charged. */
+/**
+ * Rental days from pick-up through return, both dates included.
+ * 6 Nov to 10 Nov is 5 days. The same date twice is a 1-day hire.
+ * An end date before the start is not a stay.
+ */
 export function daysBetween(startIso, endIso) {
   const start = Date.parse(`${startIso}T00:00:00Z`);
   const end = Date.parse(`${endIso}T00:00:00Z`);
-  if (!Number.isFinite(start) || !Number.isFinite(end)) return 0;
-  return Math.round((end - start) / 86400000);
+  if (!Number.isFinite(start) || !Number.isFinite(end) || end < start) return 0;
+  return Math.round((end - start) / 86400000) + 1;
 }
 
 export function stayDates(startIso, endIso) {

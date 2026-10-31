@@ -1,5 +1,5 @@
 import { TEL_NUMBER, WHATSAPP_NUMBER } from './config.js';
-import { carName, formatDate, formatZmw } from './format.js';
+import { carName, formatStay, formatZmw } from './format.js';
 
 // PLACEHOLDER. wa.me and tel links below use the fake number from config.js.
 export function waLink(message) {
@@ -36,7 +36,7 @@ export function rentQuoteMessage({ car, quote, start, end, drive, airport, metho
     `I would like to rent the ${carName(car)} (sample listing).`,
   ];
   if (quote && start && end) {
-    lines.push(`Dates: ${formatDate(start)} to ${formatDate(end)} (${quote.days} days, ${quote.areaLabel}).`);
+    lines.push(`Dates: ${formatStay(start, end, quote.days)} (${quote.areaLabel}).`);
     lines.push(`Total: ${formatZmw(quote.total)} (sample).`);
     lines.push(`Refundable deposit: ${formatZmw(quote.deposit)} (sample).`);
     if (!quote.available) {

@@ -138,7 +138,7 @@ A car can be for sale, for rent, or both. Set `forSale` and `forRent`. Use `null
 | `rent.monthlyInLusakaZmw` / `monthlyOutOfTownZmw` | Used for each full 30 days |
 | `rent.depositZmw` | Refundable deposit. Sample amounts in this file are K2,000 (hatchback or sedan) and K5,000 (SUV, pickup or van) |
 | `rent.withDriver` | Shows “Driver available” when true |
-| `rent.unavailableDates` | Booked days as `YYYY-MM-DD`. The return day is not counted as a rental day |
+| `rent.unavailableDates` | Booked days as `YYYY-MM-DD`. Pick-up and return are both rental days, so a listed date blocks that day |
 
 The quote uses monthly blocks first (30 days or more), then weekly blocks (7 days or more), then leftover days at the daily rate. In Lusaka and out of town are priced separately, and the page shows both totals.
 
