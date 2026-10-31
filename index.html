@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="ZedDrive Motors is a fictional Lusaka dealer. Browse sample cars for sale or rent, with prices in Kwacha, and WhatsApp to enquire.">
-  <meta name="theme-color" content="#0e5c40">
+  <meta name="theme-color" content="#101014">
   <title>ZedDrive Motors | Buy or rent a car in Lusaka</title>
   <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml">
 </head>
@@ -12,22 +12,55 @@
   <include src="header.html"></include>
   <main id="main">
     <section class="hero">
-      <div class="wrap">
+      <img class="hero-photo" src="%BASE_URL%images/cars/toyota-harrier.webp" width="960" height="640" alt="Sample photo of a white Toyota Harrier, not a ZedDrive vehicle" fetchpriority="high" decoding="async">
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="wrap hero-copy">
         <p class="eyebrow">Lusaka · Sale and rent</p>
-        <h1>Quality cars in Lusaka, for sale or to rent.</h1>
+        <h1>Buy or <span class="gold">rent</span> your next car in Lusaka.</h1>
         <p class="lede">Browse our stock, see the price in Kwacha, and WhatsApp us to book a viewing today.</p>
-        <div class="stack-actions">
-          <a class="btn btn-ink" href="%BASE_URL%buy.html">View cars for sale</a>
-          <a class="btn btn-ghost" href="%BASE_URL%rent.html">Rent a car</a>
-          <!-- PLACEHOLDER WhatsApp number. Not a real line. -->
-          <a class="btn btn-wa" href="https://wa.me/260970000000?text=Hello%20ZedDrive%20Motors%2C%20I%20would%20like%20to%20ask%20about%20a%20car.%20This%20is%20the%20demo%20site.">WhatsApp us</a>
+        <form class="hero-search" id="find-form" action="%BASE_URL%rent.html" method="get">
+          <label class="field">Location
+            <select name="area" id="find-area">
+              <option value="in">In Lusaka</option>
+              <option value="out">Out of town</option>
+            </select>
+          </label>
+          <label class="field">Pick-up date
+            <input type="date" name="start" id="find-start" required>
+          </label>
+          <label class="field">Return date
+            <input type="date" name="end" id="find-end" required>
+          </label>
+          <button class="btn btn-gold" type="submit">Find a car</button>
+        </form>
+        <p class="fine" id="find-note" hidden>The return date has to be on or after the pick-up date.</p>
+      </div>
+    </section>
+
+    <section class="promo" aria-labelledby="promo-title" data-promo-end="2026-12-31T16:00:00+02:00">
+      <div class="wrap promo-layout">
+        <div>
+          <p class="tag">Sample promo</p>
+          <h2 id="promo-title">A fixed sample date</h2>
+          <p>This clock ends at 16:00 on 31 Dec 2026, Lusaka time. Reloading the page does not start it again. The prices on the cars do not change with this clock.</p>
         </div>
-        <ul class="strip">
-          <li>Inspected cars</li>
-          <li>Prices in ZMW</li>
-          <li>Mobile money accepted</li>
-          <li>Viewings 7 days a week</li>
-        </ul>
+        <div>
+          <ul class="promo-clock" data-promo-clock>
+            <li><strong data-unit="days">—</strong><span>Days</span></li>
+            <li><strong data-unit="hours">—</strong><span>Hours</span></li>
+            <li><strong data-unit="minutes">—</strong><span>Minutes</span></li>
+            <li><strong data-unit="seconds">—</strong><span>Seconds</span></li>
+          </ul>
+          <p class="fine" data-promo-done hidden>This sample promo date has passed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="stats-title">
+      <div class="wrap">
+        <h2 id="stats-title">Sample figures</h2>
+        <p class="fine">Counted from this demo. Not a claim about a real yard.</p>
+        <ul class="stats" id="stats"></ul>
       </div>
     </section>
 
@@ -55,23 +88,36 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="why-title">
+    <section class="section" aria-labelledby="steps-title">
       <div class="wrap">
-        <h2 id="why-title">Straight answers, in Kwacha</h2>
-        <div class="points">
-          <article class="point">
-            <h3>WhatsApp first</h3>
-            <p>Message us about a car, a rental date or a trade-in. The buttons open a chat with the car and the sample price filled in.</p>
-          </article>
-          <article class="point">
-            <h3>Prices in ZMW</h3>
-            <p>Every sample listing shows Kwacha. Sale cars have one price. Rentals show daily, weekly and monthly rates, in Lusaka and out of town.</p>
-          </article>
-          <article class="point">
-            <h3>Mobile money</h3>
-            <p>Airtel Money, MTN MoMo and bank transfer. The “pay deposit” step on a rental is a demo screen only. No payment is taken.</p>
-          </article>
-        </div>
+        <h2 id="steps-title">How to order</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-icon" aria-hidden="true">1</span>
+            <h3>Pick a car</h3>
+            <p>Choose a sample car for sale or for rent.</p>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">2</span>
+            <h3>Choose dates</h3>
+            <p>Pick-up and return both count, in Lusaka or out of town.</p>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">3</span>
+            <h3>See the price</h3>
+            <p>The total and the refundable deposit are in Kwacha.</p>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">4</span>
+            <h3>WhatsApp us</h3>
+            <p>The message includes the car, the dates and the price.</p>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">5</span>
+            <h3>Come and view</h3>
+            <p>Plot 0000, Sample Road, Lusaka. Open seven days in this demo.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -118,6 +164,15 @@
             <figcaption>Sample review</figcaption>
           </figure>
         </div>
+      </div>
+    </section>
+
+    <section class="cta-banner" aria-labelledby="cta-title">
+      <div class="wrap">
+        <h2 id="cta-title">Ask about a car on WhatsApp</h2>
+        <p>Buy or rent your next car, one WhatsApp away.</p>
+        <!-- PLACEHOLDER WhatsApp number. Not a real line. -->
+        <a class="btn" href="https://wa.me/260970000000?text=Hello%20ZedDrive%20Motors%2C%20I%20would%20like%20to%20ask%20about%20a%20car.%20This%20is%20the%20demo%20site.">WhatsApp us</a>
       </div>
     </section>
   </main>

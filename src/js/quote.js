@@ -14,7 +14,7 @@ function icon(svg) {
   return span;
 }
 
-export function mountQuote(root, { cars, initialId, lockCar = false, heading = true }) {
+export function mountQuote(root, { cars, initialId, lockCar = false, heading = true, initialStart = '', initialEnd = '', initialArea = 'in', initialAirport = false }) {
   const today = todayIso();
   const state = {
     car: cars.find((car) => car.id === initialId) || cars[0],
@@ -166,6 +166,13 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
     window.location.href = wa.href;
   });
 
+  if (isIso(initialStart)) startInput.value = initialStart;
+  if (isIso(initialEnd)) endInput.value = initialEnd;
+  const areaRadio = form.querySelector(`input[name="area"][value="${initialArea === 'out' ? 'out' : 'in'}"]`);
+  if (areaRadio) areaRadio.checked = true;
+  const airportBox = form.querySelector('input[name="airport"]');
+  if (airportBox) airportBox.checked = Boolean(initialAirport);
+
   read();
 
   return {
@@ -256,6 +263,10 @@ function partText(part) {
   const names = { month: 'month', week: 'week', day: 'day' };
   const word = part.count === 1 ? names[part.unit] : `${names[part.unit]}s`;
   return `${part.count} ${word} × ${formatZmw(part.rate)}`;
+}
+
+function isIso(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value || '');
 }
 
 function monthCursor(iso) {
