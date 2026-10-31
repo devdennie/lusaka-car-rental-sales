@@ -10,6 +10,13 @@ export function carName(car) {
   return `${car.year} ${car.make} ${car.model}`;
 }
 
+/** "5 days, 6 Nov 2026 – 10 Nov 2026", or "1 day, 6 Nov 2026" for a same-day hire. */
+export function formatStay(start, end, days) {
+  const count = days === 1 ? '1 day' : `${days} days`;
+  const when = start === end ? formatDate(start) : `${formatDate(start)} – ${formatDate(end)}`;
+  return `${count}, ${when}`;
+}
+
 export function formatDate(iso) {
   const [year, month, day] = iso.split('-').map(Number);
   const date = new Date(Date.UTC(year, month - 1, day));

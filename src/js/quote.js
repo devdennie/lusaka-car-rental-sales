@@ -1,7 +1,7 @@
 import { PHONE_DISPLAY } from './config.js';
 import { renderCalendar } from './calendar.js';
 import { el } from './dom.js';
-import { addDays, carName, formatDate, formatZmw, todayIso } from './format.js';
+import { carName, formatDate, formatStay, formatZmw, todayIso } from './format.js';
 import { quoteRent } from './pricing.js';
 import { rentQuoteMessage, telHref, waLink } from './whatsapp.js';
 
@@ -45,7 +45,7 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
   }
 
   const startInput = el('input', { type: 'date', name: 'start', id: 'quote-start', required: true, min: today });
-  const endInput = el('input', { type: 'date', name: 'end', id: 'quote-end', required: true, min: addDays(today, 1) });
+  const endInput = el('input', { type: 'date', name: 'end', id: 'quote-end', required: true, min: today });
 
   const form = el('form', { class: 'quote', id: 'quote-form' }, [
     el('p', { class: 'eyebrow' }, 'Sample quote'),
@@ -56,6 +56,7 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
       field('Pick-up date', startInput),
       field('Return date', endInput),
     ]),
+    el('p', { class: 'fine' }, 'Both the pick-up day and the return day are included. 6–10 Nov is 5 days. A same-day hire is 1 day.'),
     radios('Where will you drive?', 'area', [
       ['in', 'In Lusaka'],
       ['out', 'Out of town'],
@@ -88,7 +89,7 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
     state.area = form.querySelector('input[name="area"]:checked')?.value || 'in';
     state.drive = form.querySelector('input[name="drive"]:checked')?.value || 'Self-drive';
     state.airport = form.querySelector('input[name="airport"]').checked;
-    endInput.min = state.start ? addDays(state.start, 1) : addDays(today, 1);
+    endInput.min = state.start || today;
     state.quote = state.start && state.end ? quoteRent(state.car.rent, state.start, state.end, state.area) : null;
     if (state.start) {
       const [year, month] = state.start.split('-').map(Number);
@@ -229,7 +230,7 @@ function resultNodes(state) {
     return [el('p', {}, 'Pick a pick-up date and a return date to see the sample total.')];
   }
   if (!state.quote) {
-    return [el('p', { class: 'warn' }, 'The return date has to be after the pick-up date.')];
+    return [el('p', { class: 'warn' }, 'The return date has to be on or after the pick-up date.')];
   }
   const quote = state.quote;
   const parts = quote.parts.map(partText).join(' + ');
@@ -238,7 +239,7 @@ function resultNodes(state) {
       `${quote.areaLabel} total ${formatZmw(quote.total)} `,
       el('span', { class: 'tag' }, 'Sample'),
     ]),
-    el('p', {}, `${quote.days} days · ${parts}`),
+    el('p', {}, `${formatStay(state.start, state.end, quote.days)} · ${parts}`),
     el('p', {}, `${quote.areaLabel === 'In Lusaka' ? 'Out of town' : 'In Lusaka'} for the same dates: ${formatZmw(quote.otherTotal)} (sample).`),
     el('p', {}, `Refundable deposit ${formatZmw(quote.deposit)} (sample). This is not added to the rental total.`),
   ];

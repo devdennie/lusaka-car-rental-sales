@@ -55,12 +55,13 @@ function rows(cells) {
 function cell(iso, bookedSet, start, end) {
   if (!iso) return el('td', {});
   const booked = bookedSet.has(iso);
-  const inRange = start && end && iso >= start && iso < end;
+  const inRange = Boolean(start && end && iso >= start && iso <= end);
   const classes = ['cal-day'];
+  if (inRange) classes.push('is-range');
   if (booked) classes.push('is-booked');
-  else if (inRange) classes.push('is-range');
   const day = Number(iso.slice(-2));
-  const label = `${formatDate(iso)}${booked ? ', booked' : inRange ? ', in your dates' : ', free'}`;
+  const state = inRange && booked ? 'in your dates, booked' : booked ? 'booked' : inRange ? 'in your dates' : 'free';
+  const label = `${formatDate(iso)}, ${state}`;
   return el('td', { class: classes.join(' ') }, [
     el('span', { class: 'vh' }, label),
     el('span', { 'aria-hidden': 'true' }, String(day)),
