@@ -128,6 +128,7 @@ A car can be for sale, for rent, or both. Set `forSale` and `forRent`. Use `null
 | `forSale` / `forRent` | Which modes include the car |
 | `homeSale` / `homeRent` | Also show it on the home page |
 | `inspected` | Shows the Inspected badge |
+| `badge` | Optional sample label on the card, such as `Best seller` or `Promo` |
 | `conditionNotes` | Short note under the specs |
 | `inspectionNotes` | Optional notes on the checklist. Keys: `engine`, `gearbox`, `brakes`, `tyres`, `suspension`, `lights`, `body`, `interior`, `warnings`, `papers`. A key with text is shown as “Note”. Other rows show “Pass” |
 | `sale.priceZmw` | Sale price in Kwacha. The page labels it Sample |
@@ -165,7 +166,7 @@ Full credit lines are also rendered on the About page. `public/data/image-credit
 | `images/cars/toyota-axio.webp` | [Silver Toyota Corolla Axio front](https://commons.wikimedia.org/wiki/File:Silver_Toyota_Corolla_Axio_Front_(SSP,_HK).jpg) | Corsadent56709 | CC BY-SA 4.0 |
 | `images/cars/toyota-mark-x.webp` | [Toyota Mark X 250G front](https://commons.wikimedia.org/wiki/File:Toyota_MARK_X_250G_(GRX130)_front_(cropped).JPG) | Tokumeigakarinoaoshima | CC0 1.0 |
 | `images/cars/toyota-vanguard.webp` | [Toyota Vanguard](https://commons.wikimedia.org/wiki/File:Toyota_Vanguard.JPG) | 韋駄天狗 | CC BY-SA 3.0 |
-| `images/cars/toyota-harrier.webp` | [2015 Toyota Harrier Premium](https://commons.wikimedia.org/wiki/File:2015_Toyota_Harrier_Premium_2WD_2.0_DBA-ZSU60W_(190316).jpg) | オーバードライブ83 | CC BY-SA 4.0 |
+| `images/cars/toyota-harrier.webp` | [2015 Toyota Harrier Premium](https://commons.wikimedia.org/wiki/File:2015_Toyota_Harrier_Premium_2WD_2.0_DBA-ZSU60W_(190316).jpg) | オーバードライブ83 | CC BY-SA 4.0. Also used as the home hero photo |
 | `images/cars/toyota-fortuner.webp` | [Toyota Fortuner, Cape Town](https://commons.wikimedia.org/wiki/File:Toyota_Fortuner,_Cape_Town_(P1060077).jpg) | Matti Blume | CC BY-SA 4.0 |
 | `images/cars/toyota-hilux.webp` | [2021 Toyota Hilux Revo double-cab](https://commons.wikimedia.org/wiki/File:2021_Toyota_Hilux_Revo_Prerunner_Double-Cab_2.4_Mid.jpg) | Chanokchon | CC BY-SA 4.0 |
 | `images/cars/ford-ranger.webp` | [Ford Ranger Wildtrak](https://commons.wikimedia.org/wiki/File:Ford_Ranger_(T6,_P703)_Wildtrak_IMG_7320.jpg) | Alexander-93 | CC BY-SA 4.0 |

@@ -17,7 +17,12 @@ loadStock()
       cars: rentals,
       initialId: params.get('car') || rentals[0]?.id,
       heading: false,
+      initialStart: params.get('start') || '',
+      initialEnd: params.get('end') || '',
+      initialArea: params.get('area') || 'in',
+      initialAirport: params.get('airport') === '1',
     });
+    if (params.get('start') || params.get('end')) scrollToId('quote');
     fleet.replaceChildren(...rentals.map((car) => rentCard(car, {
       onSelect(id) {
         quote.selectCar(id);

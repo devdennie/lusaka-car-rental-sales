@@ -28,11 +28,27 @@ function photoLink(car, href) {
   ]);
 }
 
+const SEAT = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="7" r="2.2"/><path d="M8 20v-4a4 4 0 0 1 8 0v4"/></svg>';
+const GEAR = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>';
+const FUEL = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 20V6h7v14M14 9h2a3 3 0 0 1 3 3v5a2 2 0 1 0 0 4"/></svg>';
+
 function badgeRow(car, { status } = {}) {
   const badges = [el('span', { class: 'tag' }, 'Sample listing')];
+  if (car.badge) {
+    const kind = String(car.badge).toLowerCase().includes('promo') ? 'badge-promo' : 'badge-best';
+    badges.push(el('span', { class: `badge ${kind}` }, car.badge));
+  }
   if (status) badges.push(el('span', { class: `badge badge-${status}` }, statusLabel(status)));
   if (car.inspected) badges.push(el('span', { class: 'badge badge-inspected' }, 'Inspected'));
   return el('div', { class: 'badge-row' }, badges);
+}
+
+function specRow(car) {
+  return el('ul', { class: 'spec-row' }, [
+    el('li', {}, [icon(SEAT), `${car.seats} seats`]),
+    el('li', {}, [icon(GEAR), car.gearbox]),
+    el('li', {}, [icon(FUEL), car.fuel]),
+  ]);
 }
 
 function statusLabel(status) {
@@ -50,8 +66,8 @@ export function saleCard(car) {
     el('div', { class: 'card-body' }, [
       badgeRow(car, { status }),
       el('h3', {}, [el('a', { href }, carName(car))]),
-      el('p', { class: 'meta' }, `${car.year} · ${car.bodyType}`),
-      el('p', { class: 'meta' }, `${formatKm(car.mileageKm)} · ${car.gearbox} · ${car.fuel}`),
+      el('p', { class: 'meta' }, `${car.year} · ${car.bodyType} · ${formatKm(car.mileageKm)}`),
+      specRow(car),
       el('p', { class: 'price' }, [
         el('span', {}, formatZmw(car.sale.priceZmw)),
         el('span', { class: 'tag' }, 'Sample'),
@@ -69,14 +85,14 @@ export function rentCard(car, { onSelect } = {}) {
   const rates = car.rent;
   const booked = rates.unavailableDates?.length || 0;
   const selectControl = onSelect
-    ? el('button', { type: 'button', class: 'btn btn-ink', onclick: () => onSelect(car.id) }, 'Check dates and price')
-    : el('a', { class: 'btn btn-ink', href: page(`rent.html?car=${encodeURIComponent(car.id)}#quote`) }, 'Check dates and price');
+    ? el('button', { type: 'button', class: 'btn btn-gold', onclick: () => onSelect(car.id) }, 'Rent now')
+    : el('a', { class: 'btn btn-gold', href: page(`rent.html?car=${encodeURIComponent(car.id)}#quote`) }, 'Rent now');
   return el('article', { class: 'card' }, [
     photoLink(car, href),
     el('div', { class: 'card-body' }, [
       badgeRow(car),
       el('h3', {}, [el('a', { href }, carName(car))]),
-      el('p', { class: 'meta' }, `${car.seats} seats · ${car.gearbox} · ${car.fuel}`),
+      specRow(car),
       el('p', { class: 'price' }, [
         el('span', {}, `From ${formatZmw(rates.dailyInLusakaZmw)}/day`),
         el('span', { class: 'tag' }, 'Sample'),
