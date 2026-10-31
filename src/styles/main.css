@@ -239,14 +239,38 @@ a:hover { color: #083826; }
 .badge-inspected { background: #e7eef8; color: #1d3f73; }
 .badge-rent { background: #e7f6f4; color: #075e54; }
 
-.rate-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.45rem 0.8rem;
-  margin: 0.2rem 0;
+.rate-details {
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  padding: 0 0.7rem;
 }
-.rate-list dt { font-size: 0.75rem; color: var(--muted); }
-.rate-list dd { margin: 0; font-weight: 750; }
+.rate-details summary {
+  cursor: pointer;
+  font-weight: 750;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.rate-details summary::-webkit-details-marker { display: none; }
+.rate-details summary::marker { content: ""; }
+.rate-details summary::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid var(--green);
+  border-bottom: 2px solid var(--green);
+  transform: translateY(-0.1rem) rotate(45deg);
+  flex: none;
+}
+.rate-details[open] summary::before {
+  transform: translateY(0.12rem) rotate(-135deg);
+}
+.rate-details .rates { font-size: 0.88rem; }
+.rate-details .rates th,
+.rate-details .rates td { padding: 0.4rem 0.25rem; }
+.rate-details .deposit-line { margin: 0.15rem 0 0.75rem; font-size: 0.92rem; }
 
 .btn {
   display: inline-flex;

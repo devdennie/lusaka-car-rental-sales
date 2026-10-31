@@ -77,13 +77,11 @@ export function rentCard(car, { onSelect } = {}) {
       badgeRow(car),
       el('h3', {}, [el('a', { href }, carName(car))]),
       el('p', { class: 'meta' }, `${car.seats} seats · ${car.gearbox} · ${car.fuel}`),
-      el('dl', { class: 'rate-list' }, [
-        rateItem('In Lusaka', `${formatZmw(rates.dailyInLusakaZmw)}/day`),
-        rateItem('Out of town', `${formatZmw(rates.dailyOutOfTownZmw)}/day`),
-        rateItem('Week in Lusaka', formatZmw(rates.weeklyInLusakaZmw)),
-        rateItem('Month in Lusaka', formatZmw(rates.monthlyInLusakaZmw)),
-        rateItem('Deposit', `${formatZmw(rates.depositZmw)} sample`),
+      el('p', { class: 'price' }, [
+        el('span', {}, `From ${formatZmw(rates.dailyInLusakaZmw)}/day`),
+        el('span', { class: 'tag' }, 'Sample'),
       ]),
+      rateDetails(car),
       el('p', { class: 'meta' }, booked ? `${booked} sample days booked` : 'No sample days booked'),
       rates.withDriver ? el('p', { class: 'meta' }, 'Driver available') : null,
       el('div', { class: 'card-actions' }, [
@@ -95,8 +93,32 @@ export function rentCard(car, { onSelect } = {}) {
   ]);
 }
 
-function rateItem(label, value) {
-  return el('div', {}, [el('dt', {}, label), el('dd', {}, value)]);
+function rateDetails(car) {
+  const rates = car.rent;
+  const row = (label, inTown, outOfTown) => el('tr', {}, [
+    el('th', { scope: 'row' }, label),
+    el('td', {}, inTown),
+    el('td', {}, outOfTown),
+  ]);
+  return el('details', { class: 'rate-details' }, [
+    el('summary', {}, 'View rental rates'),
+    el('table', { class: 'rates' }, [
+      el('caption', {}, `Sample rates for the ${carName(car)}`),
+      el('thead', {}, [
+        el('tr', {}, [
+          el('th', { scope: 'col' }, 'Rate'),
+          el('th', { scope: 'col' }, 'In Lusaka'),
+          el('th', { scope: 'col' }, 'Out of town'),
+        ]),
+      ]),
+      el('tbody', {}, [
+        row('Day', formatZmw(rates.dailyInLusakaZmw), formatZmw(rates.dailyOutOfTownZmw)),
+        row('Week', formatZmw(rates.weeklyInLusakaZmw), formatZmw(rates.weeklyOutOfTownZmw)),
+        row('Month', formatZmw(rates.monthlyInLusakaZmw), formatZmw(rates.monthlyOutOfTownZmw)),
+      ]),
+    ]),
+    el('p', { class: 'deposit-line' }, `Refundable deposit ${formatZmw(rates.depositZmw)} (sample)`),
+  ]);
 }
 
 export function callLink(className = 'btn btn-ghost') {
