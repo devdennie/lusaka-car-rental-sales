@@ -32,12 +32,15 @@ const SEAT = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke
 const GEAR = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>';
 const FUEL = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 20V6h7v14M14 9h2a3 3 0 0 1 3 3v5a2 2 0 1 0 0 4"/></svg>';
 
-function badgeRow(car, { status } = {}) {
+function badgeRow(car, { status, extras = [] } = {}) {
   const badges = [el('span', { class: 'tag' }, 'Sample listing')];
   if (car.badge) {
     const kind = String(car.badge).toLowerCase().includes('promo') ? 'badge-promo' : 'badge-best';
     badges.push(el('span', { class: `badge ${kind}` }, car.badge));
   }
+  extras.forEach((extra) => {
+    if (extra) badges.push(extra);
+  });
   if (status) badges.push(el('span', { class: `badge badge-${status}` }, statusLabel(status)));
   if (car.inspected) badges.push(el('span', { class: 'badge badge-inspected' }, 'Inspected'));
   return el('div', { class: 'badge-row' }, badges);
@@ -105,8 +108,9 @@ export function rentCard(car, { onSelect, stay } = {}) {
   return el('article', { class: `card${stay && !stay.quote.available ? ' card-unavailable' : ''}` }, [
     photoLink(car, href),
     el('div', { class: 'card-body' }, [
-      badgeRow(car),
-      car.forSale ? el('span', { class: 'badge badge-best' }, 'Also for sale') : null,
+      badgeRow(car, {
+        extras: car.forSale ? [el('span', { class: 'badge badge-best' }, 'Also for sale')] : [],
+      }),
       el('h3', {}, [el('a', { href }, carName(car))]),
       specRow(car),
       el('p', { class: 'price' }, [
