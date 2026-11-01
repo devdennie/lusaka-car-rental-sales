@@ -14,7 +14,7 @@ function icon(svg) {
   return span;
 }
 
-export function mountQuote(root, { cars, initialId, lockCar = false, heading = true, initialStart = '', initialEnd = '', initialArea = 'in', initialAirport = false }) {
+export function mountQuote(root, { cars, initialId, lockCar = false, heading = true, initialStart = '', initialEnd = '', initialArea = 'in', initialAirport = false, noneFree = false }) {
   const today = todayIso();
   const state = {
     car: cars.find((car) => car.id === initialId) || cars[0],
@@ -24,6 +24,7 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
     drive: 'Self-drive',
     airport: false,
     quote: null,
+    noneFree,
     cursor: monthCursor(today),
   };
 
@@ -95,7 +96,28 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
       const [year, month] = state.start.split('-').map(Number);
       state.cursor = { year, month: month - 1 };
     }
+    if (state.noneFree) {
+      paintNone();
+      return;
+    }
     paint();
+  }
+
+  function paintNone() {
+    if (!lockCar) {
+      let blank = carSelect.querySelector('option[value=""]');
+      if (!blank) {
+        blank = el('option', { value: '' }, 'No car free');
+        carSelect.prepend(blank);
+      }
+      carSelect.value = '';
+    }
+    ratesHost.replaceChildren();
+    result.replaceChildren(el('p', { class: 'warn' }, 'No sample cars free for these dates.'));
+    wa.href = waLink('Hello ZedDrive Motors, no sample cars are free for the dates I chose. This is the demo site.');
+    waLabel.data = 'Ask on WhatsApp';
+    depositBtn.disabled = true;
+    calendarHost.replaceChildren();
   }
 
   function paint() {
@@ -156,7 +178,10 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
     });
   });
 
-  form.addEventListener('change', read);
+  form.addEventListener('change', (event) => {
+    if (event.target?.id === 'quote-car') state.noneFree = false;
+    read();
+  });
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (!state.quote) {
@@ -177,9 +202,14 @@ export function mountQuote(root, { cars, initialId, lockCar = false, heading = t
 
   return {
     selectCar(id) {
-      if (lockCar) return;
+      if (lockCar || !id) return;
+      state.noneFree = false;
       carSelect.value = id;
       read();
+    },
+    showNoneFree() {
+      state.noneFree = true;
+      paintNone();
     },
   };
 }

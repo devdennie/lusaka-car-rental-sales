@@ -18,9 +18,17 @@ loadStock()
   .then(({ cars }) => {
     const rentals = cars.filter((car) => car.forRent && car.rent);
     const params = new URLSearchParams(window.location.search);
+    const initialSearch = {
+      area: params.get('area') === 'out' ? 'out' : 'in',
+      start: params.get('start') || '',
+      end: params.get('end') || '',
+    };
+    const explicitId = params.get('car');
+    const freeId = firstFreeId(rentals, initialSearch);
     const quote = mountQuote(quoteRoot, {
       cars: rentals,
-      initialId: params.get('car') || rentals[0]?.id,
+      initialId: explicitId || freeId || rentals[0]?.id,
+      noneFree: Boolean(initialSearch.start && initialSearch.end && !explicitId && !freeId),
       heading: false,
       initialStart: params.get('start') || '',
       initialEnd: params.get('end') || '',
@@ -51,20 +59,16 @@ loadStock()
         if (next.end) url.searchParams.set('end', next.end);
         else url.searchParams.delete('end');
         window.history.replaceState({}, '', url);
-        render(rentals, quote, next);
+        render(rentals, quote, next, { preferFree: true });
         syncQuote(next);
       });
     }
 
-    const initial = {
-      area: params.get('area') === 'out' ? 'out' : 'in',
-      start: params.get('start') || '',
-      end: params.get('end') || '',
-    };
+    const initial = initialSearch;
     if (areaInput) areaInput.value = initial.area;
     if (startInput && initial.start) startInput.value = initial.start;
     if (endInput && initial.end) endInput.value = initial.end;
-    render(rentals, quote, initial);
+    render(rentals, quote, initial, { explicitId });
   })
   .catch(() => {
     fleet.textContent = 'Sample cars could not be loaded. You can still WhatsApp or call.';
@@ -78,7 +82,16 @@ function readForm() {
   };
 }
 
-function render(rentals, quote, search) {
+function firstFreeId(rentals, search) {
+  if (!search.start || !search.end) return null;
+  const free = rentals
+    .map((car) => ({ car, quote: quoteRent(car.rent, search.start, search.end, search.area) }))
+    .filter((row) => row.quote?.available)
+    .sort((a, b) => a.quote.total - b.quote.total);
+  return free[0]?.car.id || null;
+}
+
+function render(rentals, quote, search, { explicitId, preferFree } = {}) {
   const stay = search.start && search.end ? quoteRent(rentals[0].rent, search.start, search.end, search.area) : null;
   if (search.start && search.end && !stay) {
     writeSummary({ error: 'The return date has to be on or after the pick-up date.' });
@@ -99,6 +112,14 @@ function render(rentals, quote, search) {
   }
   writeSummary({ stay, search, ranked });
   paintFleet(ranked, quote, stay, search);
+  if (!stay || !quote.showNoneFree) return;
+  if (explicitId && rentals.some((car) => car.id === explicitId)) {
+    quote.selectCar(explicitId);
+    return;
+  }
+  const free = ranked.filter((row) => row.quote.available);
+  if (free.length && (preferFree || !explicitId)) quote.selectCar(free[0].car.id);
+  else if (!free.length) quote.showNoneFree();
 }
 
 function paintFleet(ranked, quote, stay, search) {
@@ -107,7 +128,7 @@ function paintFleet(ranked, quote, stay, search) {
   const busy = stay ? rows.filter((row) => !row.quote.available) : [];
   const blocks = [];
   if (stay) {
-    blocks.push(group(free.length ? 'Free for these dates' : 'No sample cars are free for these dates', free, quote, stay, search));
+    blocks.push(group(free.length ? 'Free for these dates' : 'No sample cars free for these dates', free, quote, stay, search));
     if (busy.length) blocks.push(group('Not free for these dates', busy, quote, stay, search));
   } else {
     blocks.push(elCards(rows, quote, null, search));
@@ -133,7 +154,7 @@ function elCards(rows, quote, stay, search) {
   wrap.className = 'cards';
   if (!rows.length) {
     const empty = document.createElement('p');
-    empty.textContent = 'No sample cars are free for these dates.';
+    empty.textContent = 'No sample cars free for these dates.';
     wrap.append(empty);
     return wrap;
   }
